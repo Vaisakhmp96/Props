@@ -1,18 +1,40 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <app-header v-bind:title="title" v-on:changeTitle="updateTitle($event)"></app-header>
+    <app-ninjas v-bind:ninjas="ninjas"></app-ninjas>
+    <app-footer></app-footer>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import HeaderData from './components/HeaderData.vue'
+import FooterData from './components/FooterData.vue'
+import NinjasData from './components/NinjasData.vue'
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+     'app-header':HeaderData,
+     'app-footer':FooterData,
+     'app-ninjas':NinjasData
+  },
+  data() {
+    return{
+      ninjas:[
+       {name:'Ryu', speciality:'Vue Components', show:false},
+       {name:'Cristal', speciality:'HTML Wizardry', show:false},
+       {name:'Hitesh', speciality:'Click events', show:false},
+       {name:'Tango', speciality:'Conditionals', show:false},
+       {name:'Tom', speciality:'Webpack', show:false},
+       {name:'Roy', speciality:'Data Diggin', show:false}
+      ],
+      title: "Vue Ninjas"
+    
+    }
+  },
+ methods: {
+  changeTitle: function(updatedTitle){
+    this.title = updatedTitle; 
   }
+ }
 }
 </script>
 
